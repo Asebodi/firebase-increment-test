@@ -14,9 +14,12 @@
     "gatsby-source-filesystem": "^2.1.31",
     "gatsby-transformer-sharp": "^2.2.21",
     "prop-types": "^15.7.2",
+    "qrcode-react": "^0.1.16",
+    "random-string": "^0.2.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "react-helmet": "^5.2.1"
+    "react-helmet": "^5.2.1",
+    "time-stamp": "^2.2.0"
   },
   "devDependencies": {
     "prettier": "^1.18.2"
