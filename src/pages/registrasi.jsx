@@ -84,13 +84,13 @@ export default class test extends Component {
 
                         <div className="form-wrapper">
                             <label htmlFor="nameInput">Nama</label>
-                            <input type="text" value={this.state.name} onChange={this.handleName} className="nameInput" />
+                            <input type="text" value={this.state.name} onChange={this.handleName} onClick={this.checkCount} className="nameInput" />
 
                             <label htmlFor="phoneInput">Nomor Telepon</label>
-                            <input type="text" value={this.state.phone} onChange={this.handlePhone} className="phoneInput"/>
+                            <input type="text" value={this.state.phone} onChange={this.handlePhone} onClick={this.checkCount} className="phoneInput"/>
 
                             <label htmlFor="emailInput">Alamat Email</label>
-                            <input type="text" value={this.state.email} onChange={this.handleEmail} className="emailInput"/>
+                            <input type="text" value={this.state.email} onChange={this.handleEmail} onClick={this.checkCount} className="emailInput"/>
 
                             <button onClick={this.submitBtn} >Registrasi</button>
                         </div>
