@@ -19,7 +19,8 @@
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-helmet": "^5.2.1",
-    "time-stamp": "^2.2.0"
+    "time-stamp": "^2.2.0",
+    "firebase": "^7.2.0"
   },
   "devDependencies": {
     "prettier": "^1.18.2"
