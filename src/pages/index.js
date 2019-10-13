@@ -10,7 +10,7 @@ const IndexPage = () => (
   <Layout>
     <input type="text" className="name"/>
     <input type="text" className="email"/>
-    <Link to="/test/">Go to page 2</Link>
+    <Link to="/registrasi/">Go to page 2</Link>
   </Layout>
 )
 

@@ -123,7 +123,7 @@ export default class test extends Component {
                             <div className="summary-section place-wrapper">
                                 <div className="grid-wrapper grid-border">
                                     <h3>4 November 2019</h3>
-                                    <p>Open gate: 08:00 WIB</p>
+                                    <p>Open gate: 07:00 WIB</p>
                                 </div>
 
                                 <div className="grid-wrapper">
@@ -157,11 +157,6 @@ export default class test extends Component {
         this.setState({timedate: timeDate});
 
         console.log("Register");
-        const increment = firebase.firestore.FieldValue.increment(1);
-
-        const statsRef = db.collection('pendaftar').doc('--stats--');
-        let timeinmillis = new Date().getTime().toString();
-        const userRef = db.collection('pendaftar').doc(timeinmillis);
 
         if (this.state.count < 25) {
             this.setState({price: "Rp 45.000", presale: "Presale 1"})
@@ -170,13 +165,8 @@ export default class test extends Component {
         } else {
             this.setState({price: "Rp 65.000", presale: "Presale 3"})
         }
-
-        const batch = db.batch();
-        batch.set(userRef, {name: this.state.name});
-        batch.update(userRef, {email: this.state.email});
-        batch.update(userRef, {phone: this.state.phone});
-        batch.set(statsRef, {count: increment}, {merge: true});
-        batch.commit();
+        
+        this.updateDb();
     }
 
     checkCount = () => {
@@ -185,5 +175,26 @@ export default class test extends Component {
             console.log(this.state.count);
             this.setState({count: stats.count});
         })
+    }
+
+    updateDb = () => {setTimeout(() => {
+        console.log(this.state.timedate + this.state.presale);
+
+        const increment = firebase.firestore.FieldValue.increment(1);
+
+        const statsRef = db.collection('pendaftar').doc('--stats--');
+        let timeinmillis = new Date().getTime().toString();
+        const userRef = db.collection('pendaftar').doc(timeinmillis);
+
+        const batch = db.batch();
+        batch.set(userRef, {name: this.state.name});
+        batch.update(userRef, {email: this.state.email});
+        batch.update(userRef, {phone: this.state.phone});
+        batch.update(userRef, {presale: this.state.presale});
+        batch.update(userRef, {time: this.state.timedate});
+        batch.update(userRef, {random: this.state.id});
+        batch.set(statsRef, {count: increment}, {merge: true});
+        batch.commit();        
+        }, 1000);
     }
 }
