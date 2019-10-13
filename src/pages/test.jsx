@@ -18,6 +18,7 @@ export default class test extends Component {
             email: "",
             phone: "",
             count: "",
+            presale: "",
             price: ""
         }
 
@@ -60,10 +61,10 @@ export default class test extends Component {
                     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700i&display=swap" rel="stylesheet" />
                 </Helmet>
 
-                <div className="page-wrapper">
+                <div className="page-wrapper" onLoad={this.checkCount}>
                     <nav>
                         <div className="nav-section nav-back">
-                            <img src={backButton} alt=""/>
+                            <Link to="/"><img src={backButton} alt=""/></Link>
                         </div>
 
                         <div className="nav-section nav-title">
@@ -102,10 +103,10 @@ export default class test extends Component {
 
                         <div className="summary-wrapper">
                             <div className="summary-section qr-wrapper">
-                                <p>Presale 1</p>
+                                <p>{this.state.presale}</p>
                                 <QRCode value={this.state.id} />
                                 <h3>{this.state.id}</h3>
-                                <h4>Rp 45.000</h4>
+                                <h4>{this.state.price}</h4>
                             </div>
 
                             <div className="summary-section data-section">
@@ -155,19 +156,19 @@ export default class test extends Component {
         let timeDate = timestamp('DD/MM/YYYY HH:mm:ss');
         this.setState({timedate: timeDate});
 
-        console.log("clicked");
+        console.log("Register");
         const increment = firebase.firestore.FieldValue.increment(1);
 
         const statsRef = db.collection('pendaftar').doc('--stats--');
         let timeinmillis = new Date().getTime().toString();
         const userRef = db.collection('pendaftar').doc(timeinmillis);
 
-        this.checkCount();
-
         if (this.state.count < 25) {
-            console.log("u5");
+            this.setState({price: "Rp 45.000", presale: "Presale 1"})
+        } if (this.state.count < 45) {
+            this.setState({price: "Rp 55.000", presale: "Presale 2"})
         } else {
-            console.log("a5")
+            this.setState({price: "Rp 65.000", presale: "Presale 3"})
         }
 
         const batch = db.batch();
@@ -181,9 +182,8 @@ export default class test extends Component {
     checkCount = () => {
         db.collection('pendaftar').doc('--stats--').get().then(count => {
             let stats = count.data();
-            console.log(stats.count);
-            // this.setState({count: stats.count});
-            return stats.count;
+            console.log(this.state.count);
+            this.setState({count: stats.count});
         })
     }
 }
