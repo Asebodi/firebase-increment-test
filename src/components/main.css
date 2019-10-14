@@ -5,14 +5,17 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+.hidden{
+    display: none;
+}
+
 .page-wrapper{
     max-width: 720px;
     margin: 0 auto;
-    border-right: 1px solid black;
-    border-left: 1px solid black;
+    padding-bottom: 2em;
     -webkit-box-shadow: 2px 5px 56px -8px rgba(0,0,0,0.75);
--moz-box-shadow: 2px 5px 56px -8px rgba(0,0,0,0.75);
-box-shadow: 2px 5px 56px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 5px 56px -8px rgba(0,0,0,0.75);
+    box-shadow: 2px 5px 56px -8px rgba(0,0,0,0.75);
 }
 
 nav{
@@ -63,6 +66,14 @@ nav{
     font-size: 20px;
 }
 
+.qr-wrapper canvas{
+    margin: 1em 0 0 0;
+}
+
+.random{
+    margin-bottom: 0.5em;
+}
+
 .place-wrapper{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -102,4 +113,39 @@ nav{
 .form-wrapper input{
     display: block;
     margin-bottom: 1em;
+}
+
+/* List */
+
+.registration-guide{
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 3em;
+    border-radius: 10px;
+    padding: 1em 3em;
+    border: 1px solid black;
+}
+
+.guide-header{
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.guide-wrapper{
+    line-height: 23px;
+}
+
+.guide-wrapper li{
+    margin-bottom: 5px;
+}
+
+.contact-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 2em 0;
+    align-items: center;
+}
+
+.contact-title{
+    margin-bottom: 5px;
 }

@@ -19,7 +19,8 @@ export default class test extends Component {
             phone: "",
             count: "",
             presale: "",
-            price: ""
+            price: "",
+            finished: false
         }
 
         this.handleName = this.handleName.bind(this);
@@ -77,7 +78,7 @@ export default class test extends Component {
                         </div>
                     </nav>
 
-                    <main className="registration-form">
+                    <main className={this.state.finished ? "hidden registration-form" : "registration-form"} >
                         <div className="main-header">
                             <h4>Registrasi Seminar Nasional</h4>
                         </div>
@@ -96,7 +97,7 @@ export default class test extends Component {
                         </div>
                     </main>
 
-                    <main className="registration-summary">
+                    <main className={this.state.finished ? "registration-summary" : "hidden registration-summary"}>
                         <div className="main-header">
                             <h4>Ringkasan Transaksi</h4>
                         </div>
@@ -105,7 +106,7 @@ export default class test extends Component {
                             <div className="summary-section qr-wrapper">
                                 <p>{this.state.presale}</p>
                                 <QRCode value={this.state.id} />
-                                <h3>{this.state.id}</h3>
+                                <h3 className="random">{this.state.id}</h3>
                                 <h4>{this.state.price}</h4>
                             </div>
 
@@ -131,9 +132,42 @@ export default class test extends Component {
                                 </div>
                             </div>
 
-                            <div className="summary-section">
+                            <div className="summary-section" style={{border: "none"}}>
                                 <p>Dipesan pada {this.state.timedate} WIB</p>
                             </div>
+                        </div>
+                    </main>
+
+                    <main className="registration-guide">
+                        <div className="guide-header">
+                            <h3>Petunjuk Pendaftaran</h3>
+                        </div>
+
+                        <div className="contact-grid">
+                            <div className="grid-wrapper grid-border">
+                                <h4 className="contact-title">Contact Person</h4>
+                                <p>Wulan : 081 210 145 825</p>
+                            </div>
+
+                            <div className="grid-wrapper">
+                                <h4 className="contact-title">Rekening Pembayaran</h4>
+                                <p>BNI - 0723370050</p>
+                                <p>an. Sri Endah Wulandari</p>
+                            </div>
+                        </div>
+
+                        <div className="guide-wrapper">
+                            <ol className="guide-list">
+                                <li>Isi data diri sesuai dengan kartu identitas (KTP/SIM).</li>
+                                <li>Satu tiket berlaku untuk satu pendaftar.</li>
+                                <li>Pendaftar harus mengambil Screenshot (SS) dari hasil pemesanan tiket (Berisi barcode, kode unik, dan data diri).</li>
+                                <li>Transfer pembayaran ke rekening di atas, maksimal jam 19.00 dihari pendaftaran yang sama.</li>
+                                <li>Kirim Screenshot (SS) Review data diri + Barcode dan Kode Unik ke CP.</li>
+                                <li>Kirim bukti transfer ke CP dengan menulis nama lengkap pendaftar, bukan pembayar.</li>
+                                <li>Anda akan mendapat konfirmasi dari kami, jika belum silahkan hubungi kami lagi.</li>
+                                <li>Membawa kartu identitas dan menunjukkan hasil Screenshot (SS) pemesanan tiket ketika check in masuk ruang seminar.</li>
+                                <li>Ketidakhadiran / diwakilkan harap konfirmasi ke CP maksimal H-3 Acara.</li>
+                            </ol>
                         </div>
                     </main>
                 </div>
@@ -159,14 +193,16 @@ export default class test extends Component {
         console.log("Register");
 
         if (this.state.count < 25) {
-            this.setState({price: "Rp 45.000", presale: "Presale 1"})
+            this.setState({price: "Rp 50.000", presale: "Presale 1"})
         } if (this.state.count < 45) {
-            this.setState({price: "Rp 55.000", presale: "Presale 2"})
+            this.setState({price: "Rp 60.000", presale: "Presale 2"})
         } else {
-            this.setState({price: "Rp 65.000", presale: "Presale 3"})
+            this.setState({price: "Rp 70.000", presale: "Presale 3"})
         }
         
         this.updateDb();
+
+        this.setState({finished: true});
     }
 
     checkCount = () => {
