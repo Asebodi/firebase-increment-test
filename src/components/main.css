@@ -16,6 +16,7 @@
     -webkit-box-shadow: 2px 5px 56px -8px rgba(0,0,0,0.75);
     -moz-box-shadow: 2px 5px 56px -8px rgba(0,0,0,0.75);
     box-shadow: 2px 5px 56px -8px rgba(0,0,0,0.75);
+    background-color: #503131;
 }
 
 nav{
@@ -25,6 +26,7 @@ nav{
     min-height: 4em;
     border-bottom: 1px solid black;
     text-align: center;
+    background-color: var(--info-bg);
 }
 
 .nav-back img{
@@ -103,6 +105,7 @@ nav{
     border-radius: 10px;
     padding: 1.5em 1em;
     border: 1px solid black;
+    text-align: center;
 }
 
 .form-wrapper label{
@@ -148,4 +151,40 @@ nav{
 
 .contact-title{
     margin-bottom: 5px;
+}
+
+.input{
+    width: 50%;
+    margin: 0 auto;
+}
+
+.input-last{
+    margin-bottom: 1em;
+}
+
+.box{
+    background-color: var(--info-bg);
+}
+
+.registerBtn{
+    background-color: white;
+    padding: 0.5em 0.7em;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    border-radius: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .input{
+        width: 100%;
+    }
+
+    .registerBtn{
+        background-color: white;
+        padding: 0.5em 0.7em;
+        margin: 0 auto;
+        display: block;
+        text-align: center;
+    }
 }

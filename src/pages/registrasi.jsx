@@ -62,7 +62,7 @@ export default class test extends Component {
                     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700i&display=swap" rel="stylesheet" />
                 </Helmet>
 
-                <div className="page-wrapper" onLoad={this.checkCount}>
+                <div className="page-wrapper" onLoad={this.checkCount} >
                     <nav>
                         <div className="nav-section nav-back">
                             <Link to="/"><img src={backButton} alt=""/></Link>
@@ -80,32 +80,33 @@ export default class test extends Component {
 
                     <main className={this.state.finished ? "hidden registration-form" : "registration-form"} >
                         <div className="main-header">
-                            <h4>Registrasi Seminar Nasional</h4>
+                            <h4 className="orange-text">Registrasi Seminar Nasional</h4>
                         </div>
 
-                        <div className="form-wrapper">
+                        <div className="form-wrapper box">
                             <label htmlFor="nameInput">Nama</label>
-                            <input type="text" value={this.state.name} onChange={this.handleName} onClick={this.checkCount} className="nameInput" />
+                            <input type="text" required value={this.state.name} onChange={this.handleName} onClick={this.checkCount} className="nameInput input" />
 
                             <label htmlFor="phoneInput">Nomor Telepon</label>
-                            <input type="text" value={this.state.phone} onChange={this.handlePhone} onClick={this.checkCount} className="phoneInput"/>
+                            <input type="text" required value={this.state.phone} onChange={this.handlePhone} onClick={this.checkCount} className="phoneInput input"/>
 
                             <label htmlFor="emailInput">Alamat Email</label>
-                            <input type="text" value={this.state.email} onChange={this.handleEmail} onClick={this.checkCount} className="emailInput"/>
+                            <input type="text" required value={this.state.email} onChange={this.handleEmail} onClick={this.checkCount} className="emailInput input input-last"/>
 
-                            <button onClick={this.submitBtn} >Registrasi</button>
+                            <button onClick={this.submitBtn} className="registerBtn">Registrasi</button>
                         </div>
                     </main>
 
                     <main className={this.state.finished ? "registration-summary" : "hidden registration-summary"}>
                         <div className="main-header">
-                            <h4>Ringkasan Transaksi</h4>
+                            <h4 className="orange-text">Ringkasan Transaksi</h4>
+                            <p style={{textAlign: "center", marginTop: "15px", color:"white"}}>Mohon untuk men-screenshot halaman ini</p>
                         </div>
 
-                        <div className="summary-wrapper">
+                        <div className="summary-wrapper box">
                             <div className="summary-section qr-wrapper">
                                 <p>{this.state.presale}</p>
-                                <QRCode value={this.state.id} />
+                                <QRCode value={this.state.id} bgColor={"#F3F0E0"} />
                                 <h3 className="random">{this.state.id}</h3>
                                 <h4>{this.state.price}</h4>
                             </div>
@@ -138,21 +139,24 @@ export default class test extends Component {
                         </div>
                     </main>
 
-                    <main className="registration-guide">
+                    <main className="registration-guide box">
                         <div className="guide-header">
-                            <h3>Petunjuk Pendaftaran</h3>
+                            <h3 className="orange-text">Petunjuk Pendaftaran</h3>
                         </div>
 
                         <div className="contact-grid">
-                            <div className="grid-wrapper grid-border">
+                            <div className="grid-wrapper">
                                 <h4 className="contact-title">Contact Person</h4>
-                                <p>Wulan : 081 210 145 825</p>
+                                <p>Wulan : 081210145825</p>
                             </div>
 
-                            <div className="grid-wrapper">
+                            <div className="grid-wrapper" style={{borderLeft: "1px dotted black"}}>
                                 <h4 className="contact-title">Rekening Pembayaran</h4>
                                 <p>BNI - 0723370050</p>
-                                <p>an. Sri Endah Wulandari</p>
+                                <p>A/n Sri Endah Wulandari</p>
+
+                                <p style={{marginTop: "1em"}}>OVO - 085799536648</p>
+                                <p>A/n Kikis</p>
                             </div>
                         </div>
 
@@ -171,38 +175,35 @@ export default class test extends Component {
                         </div>
                     </main>
                 </div>
-                <button onClick={this.checkCount}>Test</button>
-                <p>{this.state.name}</p>
-                <p>{this.state.email}</p>
-                <p>{this.state.count}</p>
-                <p>{this.state.phone}</p>
             </>
         )
     }
 
     submitBtn = () => {
-        var randomString = require('random-string');
-        const timestamp = require('time-stamp');
+        if (this.state.name && this.state.phone && this.state.email != "") {
+            var randomString = require('random-string');
+            const timestamp = require('time-stamp');
 
-        let uid = randomString({length: 6});
-        this.setState({id: uid});
+            let uid = randomString({length: 6});
+            this.setState({id: uid});
 
-        let timeDate = timestamp('DD/MM/YYYY HH:mm:ss');
-        this.setState({timedate: timeDate});
+            let timeDate = timestamp('DD/MM/YYYY HH:mm:ss');
+            this.setState({timedate: timeDate});
 
-        console.log("Register");
+            console.log("Register");
 
-        if (this.state.count < 25) {
-            this.setState({price: "Rp 50.000", presale: "Presale 1"})
-        } if (this.state.count < 45) {
-            this.setState({price: "Rp 60.000", presale: "Presale 2"})
-        } else {
-            this.setState({price: "Rp 70.000", presale: "Presale 3"})
+            if (this.state.count < 200) {
+                this.setState({price: "Rp 50.000", presale: "Presale 1"})
+            } else if (this.state.count < 500) {
+                this.setState({price: "Rp 60.000", presale: "Presale 2"})
+            } else {
+                this.setState({price: "Rp 70.000", presale: "Presale 3"})
+            }
+            
+            this.updateDb();
+
+            this.setState({finished: true});
         }
-        
-        this.updateDb();
-
-        this.setState({finished: true});
     }
 
     checkCount = () => {
