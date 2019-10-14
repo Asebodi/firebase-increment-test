@@ -150,12 +150,12 @@ export default class test extends Component {
                                 <p>Wulan : 081210145825</p>
                             </div>
 
-                            <div className="grid-wrapper" style={{borderLeft: "1px dotted black"}}>
+                            <div className="grid-wrapper  left-border">
                                 <h4 className="contact-title">Rekening Pembayaran</h4>
                                 <p>BNI - 0723370050</p>
                                 <p>A/n Sri Endah Wulandari</p>
 
-                                <p style={{marginTop: "1em"}}>OVO - 085799536648</p>
+                                <p className="ovo">OVO - 085799536648</p>
                                 <p>A/n Kikis</p>
                             </div>
                         </div>
@@ -171,6 +171,7 @@ export default class test extends Component {
                                 <li>Anda akan mendapat konfirmasi dari kami, jika belum silahkan hubungi kami lagi.</li>
                                 <li>Membawa kartu identitas dan menunjukkan hasil Screenshot (SS) pemesanan tiket ketika check in masuk ruang seminar.</li>
                                 <li>Ketidakhadiran / diwakilkan harap konfirmasi ke CP maksimal H-3 Acara.</li>
+                                <li>Jika terjadi kendala, harap hubungi CP di atas.</li>
                             </ol>
                         </div>
                     </main>

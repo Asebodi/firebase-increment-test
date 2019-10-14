@@ -89,6 +89,10 @@ nav{
     padding: 0 0.5em;
 }
 
+.left-border{
+    border-left: 1px dotted black;
+}
+
 /* DIVIDER */
 
 .logo{
@@ -175,6 +179,10 @@ nav{
     border-radius: 10px;
 }
 
+.ovo{
+    margin-top: 1em;
+}
+
 @media only screen and (max-width: 768px) {
     .input{
         width: 100%;
@@ -186,5 +194,17 @@ nav{
         margin: 0 auto;
         display: block;
         text-align: center;
+    }
+    .contact-grid{
+        display: block;
+    }
+
+    .left-border{
+        border-left: none;
+        margin-top: 1.5em;
+    }
+
+    .ovo{
+        margin-top: 0.7em
     }
 }
