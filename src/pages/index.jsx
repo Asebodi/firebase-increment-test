@@ -94,16 +94,16 @@ const IndexPage = () => (
             <div className="presale-header">
               <h2 className="orange-text margin10">HTM</h2>
               <p>Presale saat ini:</p>
-              <p className="presale-status">Presale 1</p>
+              <p className="presale-status">Presale 2</p>
             </div>
             <div className="presale-info">
               <div className="presale-title">
-                <h3 className="orange-text">Presale 1</h3>
+                <del><h3 className="orange-text">Presale 1</h3></del>
                 <h3 className="orange-text">Presale 2</h3>
                 <h3 className="orange-text">Presale 3</h3> 
               </div>
               <div className="presale-price">
-                <h3 className="italic-text">50k</h3>
+                <del><h3 className="italic-text">50k</h3></del>
                 <h3 className="italic-text">60k</h3>
                 <h3 className="italic-text">70k</h3>
               </div>
